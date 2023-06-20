@@ -49,14 +49,14 @@ ingress:
     cert-manager.io/issuer-kind: Issuer
     kubernetes.io/ingress.class: nginx
   hosts:
-    - host: deblocked.dev
+    - host: edge.deblocked.dev
       paths:
         - path: /
           pathType: ImplementationSpecific
   tls:
    - secretName: deblocked.dev-tls
      hosts:
-       - deblocked.dev
+       - edge.deblocked.dev
 
 resources:
   limits:
