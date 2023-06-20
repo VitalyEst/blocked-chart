@@ -1,0 +1,17 @@
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: issuer
+  labels:
+    {{- include "helm.labels" . | nindent 4 }}
+spec:
+  acme:
+    email: vitalik181276@gmail.com
+    privateKeySecretRef:
+      name: letsencrypt
+    server: https://acme-v02.api.letsencrypt.org/directory
+    preferredChain: "ISRG Root X1"
+    solvers:
+    - http01:
+        ingress:
+          class: nginx

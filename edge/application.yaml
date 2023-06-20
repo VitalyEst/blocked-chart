@@ -1,0 +1,40 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: edge
+  namespace: argo-cd
+  annotations:
+    argocd-image-updater.argoproj.io/chart-version: ~ 0.0
+    argocd-image-updater.argoproj.io/git-branch: main
+    argocd-image-updater.argoproj.io/image-list: nuxt=registry.digitalocean.com/blocked5/edge:latest
+
+    argocd-image-updater.argoproj.io/nuxt.force-update: "true"
+    argocd-image-updater.argoproj.io/nuxt.helm.image-name: image.repository
+    argocd-image-updater.argoproj.io/nuxt.helm.image-tag: image.tag
+    argocd-image-updater.argoproj.io/nuxt.update-strategy: latest
+
+    argocd-image-updater.argoproj.io/pull-secret: pullsecret:argo-cd/regcred-edge
+
+spec:
+  destination:
+    namespace: edge
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: edge/helm
+    repoURL: https://github.com/VitalyEst/blocked-chart.git
+    targetRevision: main
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    retry:
+      limit: 10
+      backoff:
+        duration: 1m
+        maxDuration: 16m
+        factor: 2
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true
+      - ApplyOutOfSyncOnly=true
