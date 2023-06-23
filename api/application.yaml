@@ -6,7 +6,7 @@ metadata:
   annotations:
     argocd-image-updater.argoproj.io/chart-version: ~ 0.0
     argocd-image-updater.argoproj.io/git-branch: main
-    argocd-image-updater.argoproj.io/image-list: nuxt=registry.digitalocean.com/blocked5/api:latest
+    argocd-image-updater.argoproj.io/image-list: nuxt=registry.digitalocean.com/blocked5/api:main
 
     argocd-image-updater.argoproj.io/nuxt.force-update: "true"
     argocd-image-updater.argoproj.io/nuxt.helm.image-name: image.repository
