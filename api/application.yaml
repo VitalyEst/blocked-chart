@@ -11,7 +11,7 @@ metadata:
     argocd-image-updater.argoproj.io/nuxt.force-update: "true"
     argocd-image-updater.argoproj.io/nuxt.helm.image-name: image.repository
     argocd-image-updater.argoproj.io/nuxt.helm.image-tag: image.tag
-    argocd-image-updater.argoproj.io/nuxt.update-strategy: latest
+    argocd-image-updater.argoproj.io/nuxt.update-strategy: digest
 
     argocd-image-updater.argoproj.io/pull-secret: pullsecret:argo-cd/regcred-api
 
